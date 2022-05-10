@@ -1,34 +1,49 @@
 import './App.css'
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 import Person from './Person/Person'
-const App = props => {
-  const [PersenState, setPerenState] = useState({
+class App extends Component {
+  state = {
     persons: [
-      { name: "Talha", age: 26 },
+      { name: "Muhammad", age: 26 },
       { name: "Tayyab", age: 27 },
-      { name: "ali", age: 25 }
+      { name: "ali", age: 29 }
     ]
-  })
-
-  const switchButtonHandler = () => {
+  }
+  switchButtonHandler = (newName) => {
     // console.log("clicked")
-    setPerenState({
+    this.setState({
       persons: [
-        { name: "Muhammad", age: 26 },
+        { name: newName, age: 26 },
         { name: "Tayyab", age: 27 },
-        { name: "ali", age: 22 }
+        { name: "ali", age: 25 }
       ]
     })
   }
-  return (
-    <div className='App'>
-      <h1>hello i'm react</h1>
-      <p> This is really working</p>
-      <button onClick={switchButtonHandler}>Switch Name</button>
-      <Person name={PersenState.persons[0].name} age={PersenState.persons[0].age} />
-      <Person name={PersenState.persons[1].name} age={PersenState.persons[1].age}>My Hobbies: Gamming</Person>
-      <Person name={PersenState.persons[2].name} age={PersenState.persons[2].age} />
-    </div>
-  )
+  changeHandler = (event) => {
+    // console.log("clicked")
+    this.setState({
+      persons: [
+        { name: event.target.value, age: 26 },
+        { name: "Tayyab", age: 27 },
+        { name: "ali", age: 25 }
+      ]
+    })
+  }
+  render() {
+    return (
+      <div className='App'>
+        <h1>hello i'm react</h1>
+        <p> This is really working</p>
+        <button onClick={this.switchButtonHandler.bind(this, 'rabia')}>Switch Name</button>
+        <Person name={this.state.persons[0].name}
+          age={this.state.persons[0].age} changed={this.changeHandler} />
+        <Person name={this.state.persons[1].name}
+          age={this.state.persons[1].age}>My Hobbies: Gamming</Person>
+        <Person name={this.state.persons[2].name}
+          age={this.state.persons[2].age} click={this.switchButtonHandler.bind(this, 'Farzana')} />
+      </div >
+    )
+  }
 }
+
 export default App
