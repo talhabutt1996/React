@@ -1,14 +1,22 @@
 import './App.css'
 import React, { Component } from 'react'
 import Person from './Person/Person'
+import Input from './Input/input'
+import Output from './output/output'
 class App extends Component {
   state = {
-    persons: [
-      { name: "Muhammad", age: 26 },
-      { name: "Tayyab", age: 27 },
-      { name: "ali", age: 29 }
-    ]
+    username: "Muhammad"
   }
+  Inputchanged = (event) => {
+    this.setState({ username: event.target.value })
+  }
+  // state = {
+  //   persons: [
+  //     { name: "Muhammad", age: 26 },
+  //     { name: "Tayyab", age: 27 },
+  //     { name: "ali", age: 29 }
+  //   ]
+  // }
   switchButtonHandler = (newName) => {
     // console.log("clicked")
     this.setState({
@@ -30,27 +38,36 @@ class App extends Component {
     })
   }
   render() {
-    const style = {
-      backGroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
+    // const style = {
+    //   backGroundColor: 'white',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer'
+    // }
     return (
-      <div className='App'>
-        <h1>hello i'm react</h1>
-        <p> This is really working</p>
-        <button style={style} onClick={this.switchButtonHandler.bind(this, 'rabia')}>Switch Name</button>
-        <Person name={this.state.persons[0].name}
-          age={this.state.persons[0].age} changed={this.changeHandler} />
-        <Person name={this.state.persons[1].name}
-          age={this.state.persons[1].age}>My Hobbies: Gamming</Person>
-        <Person name={this.state.persons[2].name}
-          age={this.state.persons[2].age} click={this.switchButtonHandler.bind(this, 'Farzana')} />
-      </div >
+      <div>
+        <Input changed={this.Inputchanged}
+          curentName={this.state.username}
+        />
+        <Output userName={this.state.username} />
+        <Output />
+        <Output />
+        <Output />
+      </div>
     )
   }
 }
 
 export default App
+      // <div className='App'>
+      //   <h1>hello i'm react</h1>
+      //   <p> This is really working</p>
+      //   <button style={style} onClick={this.switchButtonHandler.bind(this, 'rabia')}>Switch Name</button>
+      //   <Person name={this.state.persons[0].name}
+      //     age={this.state.persons[0].age} changed={this.changeHandler} />
+      //   <Person name={this.state.persons[1].name}
+      //     age={this.state.persons[1].age}>My Hobbies: Gamming</Person>
+      //   <Person name={this.state.persons[2].name}
+      //     age={this.state.persons[2].age} click={this.switchButtonHandler.bind(this, 'Farzana')} />
+      // </div >
