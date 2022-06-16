@@ -24,16 +24,21 @@ class App extends Component {
     const doesShow = this.state.showPerson
     this.setState({ showPerson: !doesShow })
   }
-  changeHandler = (event) => {
-    // console.log("clicked")
-    this.setState({
-      persons: [
-        { name: event.target.value, age: 26 },
-        { name: "Tayyab", age: 27 },
-        { name: "ali", age: 25 }
-      ]
-    })
+  handleDeletePerson = (personsIndex) => {
+    const persons = [...this.state.persons]
+    persons.splice(personsIndex, 1)
+    this.setState({ persons: persons })
   }
+  // changeHandler = (event) => {
+  //   // console.log("clicked")
+  //   this.setState({
+  //     persons: [
+  //       { name: event.target.value, age: 26 },
+  //       { name: "Tayyab", age: 27 },
+  //       { name: "ali", age: 25 }
+  //     ]
+  //   })
+  // }
   render() {
     const style = {
       backGroundColor: 'white',
@@ -46,12 +51,14 @@ class App extends Component {
     if (this.state.showPerson) {
       persons = (
         <div>
-          <Person name={this.state.persons[0].name}
-            age={this.state.persons[0].age} changed={this.changeHandler} />
-          <Person name={this.state.persons[1].name}
-            age={this.state.persons[1].age}>My Hobbies: Gamming</Person>
-          <Person name={this.state.persons[2].name}
-            age={this.state.persons[2].age} click={this.switchButtonHandler.bind(this, 'Farzana')} />
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                click={() => this.handleDeletePerson(index)}
+                name={person.name}
+                age={person.age}
+              />)
+          })}
         </div>
       )
     }
