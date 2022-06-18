@@ -1,6 +1,7 @@
 import './App.css'
 import React, { Component } from 'react'
-import Person from '../components/Persons/Person/Person'
+import Persons from '../components/Persons/Persons'
+import Cockpit from '../Cockpit/Cockpit'
 class App extends Component {
   state = {
     persons: [
@@ -56,33 +57,18 @@ class App extends Component {
     if (this.state.showPerson) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                click={() => this.handleDeletePerson(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.changeHandler(event, persons.id)}
-              />)
-          })}
+          <Persons
+            persons={this.state.persons}
+            clicked={this.handleDeletePerson}
+            changed={this.changeHandler}
+          />
         </div>
       )
-      style.backgroundColor = "red"
-    }
-    let classes = []
-    if (this.state.persons.length <= 2) {
-      classes.push("red")
-    }
-    if (this.state.persons <= 1) {
-      classes.push("bold")
     }
     return (
 
       <div className='App'>
-        <h1>hello i'm react</h1>
-        <p className={classes.join(" ")}> This is really working</p>
-        <button style={style} onClick={this.showTogglePerson}>Switch Name</button>
+        <Cockpit showPerson={this.state.showPerson} persons={this.state.persons} clicked={this.showTogglePerson} />
         {persons}
       </div >
 
