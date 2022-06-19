@@ -21,6 +21,16 @@ class App extends Component {
       ]
     })
   }
+  componentDidMount() {
+    console.log('[App.js componentDidMount]')
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate ')
+    return true
+  }
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate')
+  }
   showTogglePerson = () => {
     const doesShow = this.state.showPerson
     this.setState({ showPerson: !doesShow })
@@ -45,14 +55,14 @@ class App extends Component {
     this.setState({ persons: persons })
   }
   render() {
-    const style = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      color: "white",
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-    }
+    // const style = {
+    //   backgroundColor: 'green',
+    //   font: 'inherit',
+    //   color: "white",
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    // }
     let persons = null
     if (this.state.showPerson) {
       persons = (
@@ -68,7 +78,11 @@ class App extends Component {
     return (
 
       <div className='App'>
-        <Cockpit showPerson={this.state.showPerson} persons={this.state.persons} clicked={this.showTogglePerson} />
+        <Cockpit
+          title={this.props.appTitle}
+          showPerson={this.state.showPerson}
+          persons={this.state.persons}
+          clicked={this.showTogglePerson} />
         {persons}
       </div >
 
