@@ -2,6 +2,17 @@ import React, { useEffect } from 'react'
 const Cockpit = (props) => {
     useEffect(() => {
         console.log('[cockpit] useEffect')
+        const timer = setTimeout(() => {
+            alert('save your Data at Cloud')
+        }, 1000)
+        return () => {
+            clearTimeout(timer)
+            console.log('cleanup uisng useeffect')
+        }
+    }, [])
+    useEffect(() => {
+        console.log('[cockpit] 2nd useEffect')
+        return () => { console.log('cleanup uisng  2nd useeffect') }
     })
     let classes = []
     if (props.persons.length <= 2) {
