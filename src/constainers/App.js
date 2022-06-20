@@ -9,7 +9,8 @@ class App extends Component {
       { id: '02', name: "Tayyab", age: 27 },
       { id: '03', name: "ali", age: 29 }
     ],
-    showPerson: false
+    showPerson: false,
+    removeCockpit: true
   }
   switchButtonHandler = (newName) => {
     // console.log("clicked")
@@ -78,11 +79,18 @@ class App extends Component {
     return (
 
       <div className='App'>
-        <Cockpit
-          title={this.props.appTitle}
-          showPerson={this.state.showPerson}
-          persons={this.state.persons}
-          clicked={this.showTogglePerson} />
+        <button onClick={() => {
+          this.setState({ removeCockpit: false })
+        }}>Remove cockpit</button>
+        {
+          this.state.removeCockpit ?
+            (<Cockpit
+              title={this.props.appTitle}
+              showPerson={this.state.showPerson}
+              persons={this.state.persons}
+              clicked={this.showTogglePerson} />
+            ) : null
+        }
         {persons}
       </div >
 
