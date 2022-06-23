@@ -15,10 +15,10 @@ const Cockpit = (props) => {
         return () => { console.log('cleanup uisng  2nd useeffect') }
     })
     let classes = []
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
         classes.push("red")
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
         classes.push("bold")
     }
 
@@ -30,4 +30,4 @@ const Cockpit = (props) => {
         </div >
     )
 }
-export default Cockpit
+export default React.memo(Cockpit)
