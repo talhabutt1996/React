@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Person from '../Persons/Person/Person'
-class Persons extends Component {
+class Persons extends PureComponent {
     // static getDerivedStateFromProps(props, state) {
     //     console.log('[Persons.js] getDerivedstateFromProps')
     //     return state
     // }
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('[Personj.js] shouldComponentUpdate')
-        if (nextProps.persons !== this.props.persons) {
-            return true
-        } else {
-            return false
-        }
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('[Personj.js] shouldComponentUpdate')
+    //     if (nextProps.persons !== this.props.persons || nextProps.clicked !== this.props.clicked || nextProps.changed !== this.props.changed) {
+    //         return true
+    //     } else {
+    //         return false
+    //     }
+    // }
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Person.js] getSnapshotBeforeUpdate')
         return { message: 'Snapshots! ' }
