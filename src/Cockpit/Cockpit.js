@@ -25,7 +25,7 @@ const Cockpit = (props) => {
     return (
         <div>
             <h1 >{props.title}</h1>
-            <p className={classes.join(" ")}> This is really working</p>
+            <p className={classes.join(" ")}> This is really working cant belive</p>
             <button onClick={props.clicked}>Switch Name</button>
         </div >
     )
