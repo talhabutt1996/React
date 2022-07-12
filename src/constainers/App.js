@@ -1,6 +1,6 @@
 import './App.css'
 import React, { Component } from 'react'
-import Persons from '../components/Persons/Persons'
+import Persons from '../components/Persons/persons'
 import Cockpit from '../Cockpit/Cockpit'
 class App extends Component {
   state = {
