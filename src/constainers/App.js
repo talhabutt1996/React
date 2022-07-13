@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import WithClass from '../HOC/WithClass'
 import Persons from '../components/Persons/persons'
 import Cockpit from '../Cockpit/Cockpit'
+import AuthContext from '../context/AuthContext'
 class App extends Component {
   state = {
     persons: [
@@ -88,18 +89,19 @@ class App extends Component {
         <button onClick={() => {
           this.setState({ removeCockpit: false })
         }}>Remove cockpit</button>
-        {
-          this.state.removeCockpit ?
-            (<Cockpit
-              title={this.props.appTitle}
-              showPerson={this.state.showPerson}
-              personsLength={this.state.persons.length}
-              clicked={this.showTogglePerson}
-              login={this.loginHandler} />
-            ) : null
-        }
-        {persons}
-
+        <AuthContext.Provider value={{ Authenticated: this.state.authenticated, login: this.loginHandler }}>
+          {
+            this.state.removeCockpit ?
+              (<Cockpit
+                title={this.props.appTitle}
+                showPerson={this.state.showPerson}
+                personsLength={this.state.persons.length}
+                clicked={this.showTogglePerson}
+              />
+              ) : null
+          }
+          {persons}
+        </AuthContext.Provider>
       </WithClass>
     )
   }

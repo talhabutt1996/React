@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import authContext from '../context/AuthContext'
 const Cockpit = (props) => {
     useEffect(() => {
         console.log('[cockpit] useEffect')
@@ -27,7 +28,7 @@ const Cockpit = (props) => {
             <h1 >{props.title}</h1>
             <p className={classes.join(" ")}> This is really working cant belive</p>
             <button onClick={props.clicked}>Switch Name</button>
-            <button onClick={props.login}>LoginIN</button>
+            <authContext.Consumer>{(context) => <button onClick={context.login}>LoginIN</button>}</authContext.Consumer>
         </div >
     )
 }
