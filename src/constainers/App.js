@@ -11,7 +11,8 @@ class App extends Component {
       { id: '03', name: "ali", age: 29 }
     ],
     showPerson: false,
-    removeCockpit: true
+    removeCockpit: true,
+    authenticated: false
   }
   switchButtonHandler = (newName) => {
     // console.log("clicked")
@@ -22,6 +23,9 @@ class App extends Component {
         { name: "ali", age: 25 }
       ]
     })
+  }
+  loginHandler = () => {
+    this.setState({ authenticated: true })
   }
   componentDidMount() {
     console.log('[App.js componentDidMount]')
@@ -73,6 +77,7 @@ class App extends Component {
             persons={this.state.persons}
             clicked={this.handleDeletePerson}
             changed={this.changeHandler}
+            isAuthenticated={this.state.authenticated}
           />
         </div>
       )
@@ -89,7 +94,8 @@ class App extends Component {
               title={this.props.appTitle}
               showPerson={this.state.showPerson}
               personsLength={this.state.persons.length}
-              clicked={this.showTogglePerson} />
+              clicked={this.showTogglePerson}
+              login={this.loginHandler} />
             ) : null
         }
         {persons}
