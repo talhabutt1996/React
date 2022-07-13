@@ -4,6 +4,7 @@ import WithClass from '../HOC/WithClass'
 import Persons from '../components/Persons/persons'
 import Cockpit from '../Cockpit/Cockpit'
 import AuthContext from '../context/AuthContext'
+import authContext from '../context/AuthContext'
 class App extends Component {
   state = {
     persons: [
@@ -28,8 +29,10 @@ class App extends Component {
   loginHandler = () => {
     this.setState({ authenticated: true })
   }
+  static contextType = authContext;
   componentDidMount() {
     console.log('[App.js componentDidMount]')
+    console.log(this.context.Authenticated)
   }
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[App.js] shouldComponentUpdate ')
