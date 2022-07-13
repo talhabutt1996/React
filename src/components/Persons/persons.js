@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, } from 'react'
 import Person from '../Persons/Person/Person'
 class Persons extends PureComponent {
     // static getDerivedStateFromProps(props, state) {

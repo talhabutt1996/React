@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import authContext from '../context/AuthContext'
 const Cockpit = (props) => {
     useEffect(() => {
@@ -11,6 +11,7 @@ const Cockpit = (props) => {
             console.log('cleanup uisng useeffect')
         }
     }, [])
+    const AuthContext = useContext(authContext)
     useEffect(() => {
         console.log('[cockpit] 2nd useEffect')
         return () => { console.log('cleanup uisng  2nd useeffect') }
@@ -28,7 +29,7 @@ const Cockpit = (props) => {
             <h1 >{props.title}</h1>
             <p className={classes.join(" ")}> This is really working cant belive</p>
             <button onClick={props.clicked}>Switch Name</button>
-            <authContext.Consumer>{(context) => <button onClick={context.login}>LoginIN</button>}</authContext.Consumer>
+            <button onClick={AuthContext.login}>LoginIN</button>
         </div >
     )
 }
